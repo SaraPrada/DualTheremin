@@ -11,8 +11,8 @@ let freqA, ampA, freqB, ampB; // Frequenza e ampiezza per oscA e oscB
 async function setup() {
   createCanvas(windowWidth, windowHeight);
   oscA = new p5.Oscillator('sine');
-  oscB = new p5.Oscillator('sine');
-  oscA.setType('square');
+  oscB = new p5.Oscillator('square');
+  oscA.setType('sine');
   oscB.setType('square');
   colorMode(HSB, 360, 100, 100);
 
