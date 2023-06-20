@@ -1,5 +1,5 @@
 let osc, playing, freq, amp;
-let numCircles = 1; // Numero di cerchi da disegnare
+let numCircles = 10; // Numero di cerchi da disegnare
 let diameter = 100; // Dimensione fissa del cerchio
 let isSquareSound = false;
 let i = 0;
