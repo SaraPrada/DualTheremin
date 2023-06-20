@@ -76,7 +76,7 @@ async function draw() {
         let offset = 40;
 
         fill(hue, saturation, brightness);
-        stroke(255);
+        stroke(hue + 5, saturation + 5 , brightness + 5);
 
         console.log("Canvas width:", windowWidth);
         console.log("Canvas height:", windowHeight);
@@ -100,6 +100,7 @@ async function draw() {
         }
 
         fill(hueB, saturationB, brightness);
+        stroke(hueB + 5, saturationB + 5 , brightness + 5);
         for (let i = 0; i < numCircles; i++) {
           i++;
           rect(myXB + (offset * i), myYB + (offset * i), diameter);
