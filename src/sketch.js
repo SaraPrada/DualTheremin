@@ -70,6 +70,8 @@ async function draw() {
         // Imposta il colore di riempimento con la sfumatura di blu
         let hue = map(indiceA.x, 0, width, 180, 255); // Sfumature di blu da 180 a 255
         let saturation = map(indiceA.y, 0, height, 100, 0); // Graduazione della saturazione
+        let hueB = map(indiceB.x, 0, width, 20, 95); // Sfumature di blu da 180 a 255
+        let saturationB = map(indiceB.y, 0, height, 100, 0); // Graduazione della saturazione
         let brightness = 100; // Luminosità massima
         let offset = 40;
 
@@ -97,7 +99,7 @@ async function draw() {
           }
         }
 
-        fill(hue, saturation, 80);
+        fill(hueB, saturationB, brightness);
         for (let i = 0; i < numCircles; i++) {
           i++;
           rect(myXB + (offset * i), myYB + (offset * i), diameter);
