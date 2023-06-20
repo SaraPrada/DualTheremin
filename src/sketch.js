@@ -112,6 +112,7 @@ async function draw() {
         }
 
 		fill(0);
+    noStroke()
   		text('Suona con il dito indice', 20, 20);
   		text('Osc. Sine ', 20, 40);
   		text('Osc. Square', 20, 60);
