@@ -110,8 +110,8 @@ async function draw() {
 
 		fill(0);
   		text('Suona con il dito indice', 20, 20);
-  		text('freq: ' + freq, 20, 40);
-  		text('amp: ' + amp, 20, 60);
+  		text('Osc. Sine ', 20, 40);
+  		text('Osc. Square', 20, 60);
 
   		if (playing) {
    		osc.freq(freq, 0.1);
