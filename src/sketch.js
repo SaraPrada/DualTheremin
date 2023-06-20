@@ -123,34 +123,40 @@ async function draw() {
 }
 
 function playOscillatorA() {
-  oscA.start();
-  playingA = true;
+  if (!playingA) {
+    oscA.start();
+    playingA = true;
+  }
 }
 
 function playOscillatorB() {
-  oscB.start();
-  playingB = true;
-}
-
-function mouseMoved() {
-  if (!playingA && isSquareSound === true) {
-    playOscillatorA();
-  }
-
-  if (!playingB && isSquareSound === false) {
-    playOscillatorB();
+  if (!playingB) {
+    oscB.start();
+    playingB = true;
   }
 }
 
 
+//function mouseMoved() {
+  //if (!playingA && isSquareSound === true) {
+  //  playOscillatorA();
+ // }
+
+ // if (!playingB && isSquareSound === false) {
+ //   playOscillatorB();
+ // }
+//}
 
 
-  function mouseReleased() {
-    oscA.amp(0, 0.5);
-    oscB.amp(0, 0.5);
-    playingA = false;
-    playingB = false;
-  }
+
+
+function mouseReleased() {
+  oscA.amp(0, 0.5);
+  oscB.amp(0, 0.5);
+  playingA = false;
+  playingB = false;
+}
+
   
 
 
