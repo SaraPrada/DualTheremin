@@ -1,13 +1,19 @@
 let osc, playing, freq, amp;
 let numCircles = 1; // Numero di cerchi da disegnare
 let diameter = 100; // Dimensione fissa del cerchio
-
+let isSquareSound = false;
+let i = 0;
+let oscA, oscB; // Dichiarazione degli oscillatori
+let playingA = false, playingB = false; // Indicatori per il suono di oscA e oscB
+let freqA, ampA, freqB, ampB; // Frequenza e ampiezza per oscA e oscB
 
 
 async function setup() {
   createCanvas(windowWidth, windowHeight);
-  //cnv.mousePressed(playOscillator);
-  osc = new p5.Oscillator('sine');
+  oscA = new p5.Oscillator('sine');
+  oscB = new p5.Oscillator('sine');
+  oscA.setType('square');
+  oscB.setType('square');
   colorMode(HSB, 360, 100, 100);
 
   capture = createCapture(VIDEO);
@@ -17,46 +23,62 @@ async function setup() {
   console.log("Carico modello...");
   detector = await createDetector();
   console.log("Modello caricato.");
-
 }
 
 async function draw() {
-  //background(0)
-// translate (200, 0)
-//   scale(min(windowWidth/640, windowHeight/480))
   if (detector && capture.loadedmetadata) {
     const hands = await detector.estimateHands(capture.elt, { flipHorizontal: true });
 
     for (let j = 0; j < hands.length; j++) {
       const hand = hands[j];
       const handedness = hand.handedness;
-      // console.log(hand)
+
+      if (playingA) {
+        oscA.freq(freqA, 0.1);
+        oscA.amp(ampA, 0.1);
+      } else {
+        oscA.amp(0, 0.1);
+      }
+      
+      if (playingB) {
+        oscB.freq(freqB, 0.1);
+        oscB.amp(ampB, 0.1);
+      } else {
+        oscB.amp(0, 0.1);
+      }
+      
+      
 
       if (hands.length >= 1) {
         const manoA = hands[0];
         const manoB = hands[1];
-
-        // const mignolo = manoA.keypoints[20];
-        // const anulare = manoA.keypoints[16];
-        // const medio = manoA.keypoints[12];
-        const indice = manoA.keypoints[8];
         const indiceA = manoA.keypoints[8];
         const indiceB = manoB.keypoints[8];
-        // const pollice = manoA.keypoints[4];
 
-		// Mappa la coordinata X del mouse (mouseX) alla frequenza (freq)
-		freq = constrain(map(indice.x, 0, width, 100, 500), 100, 500);
+        if (handedness === "left") {
+          isSquareSound = false; // Indice associato ai cerchi (suono sinusoidale)
+        } else if (handedness === "right") {
+          isSquareSound = true; // Indice associato ai quadrati (suono a onda quadrata)
+        }
 
-		// Mappa la coordinata Y del mouse (mouseY) all'ampiezza (amp)
-		amp = constrain(map(indice.y, height, 0, 0, 1), 0, 1);
+        freqA = map(indiceA.x, 0, windowWidth, 100, 500); // Mappa la coordinata X dell'indice A sulla frequenza
+        ampA = map(indiceA.y, windowHeight, 0, 0, 1); // Mappa la coordinata Y dell'indice A sull'ampiezza
+
+        freqB = map(indiceB.x, 0, windowWidth, 100, 500); // Mappa la coordinata X dell'indice B sulla frequenza
+        ampB = map(indiceB.y, windowHeight, 0, 0, 1); // Mappa la coordinata Y dell'indice B sull'ampiezza
+
         // Imposta il colore di riempimento con la sfumatura di blu
-        let hue = map(indice.x, 0, width, 180, 255); // Sfumature di blu da 180 a 255
-        let saturation = map(indice.y, 0, height, 100, 0); // Graduazione della saturazione
+        let hue = map(indiceA.x, 0, width, 180, 255); // Sfumature di blu da 180 a 255
+        let saturation = map(indiceA.y, 0, height, 100, 0); // Graduazione della saturazione
         let brightness = 100; // Luminosità massima
         let offset = 40;
 
         fill(hue, saturation, brightness);
         stroke(255);
+
+        console.log("Canvas width:", windowWidth);
+        console.log("Canvas height:", windowHeight);
+
 
         myXA = map(indiceA.x, 0,640,0,windowWidth)
         myYA = map(indiceA.y, 0,480,0,windowHeight)
@@ -66,16 +88,28 @@ async function draw() {
 
 
         for (let i = 0; i < numCircles; i++) {
+          i++;
           ellipse(myXA + (offset * i), myYA + (offset * i), diameter);
+          if (isSquareSound) {
+            playOscillatorB(); // Suono a onda quadrata (oscB)
+          } else {
+            playOscillatorA(); // Suono sinusoidale (oscA)
+          }
         }
 
         fill(hue, saturation, 80);
         for (let i = 0; i < numCircles; i++) {
+          i++;
           rect(myXB + (offset * i), myYB + (offset * i), diameter);
+          if (isSquareSound) {
+            playOscillatorA(); // Suono a onda quadrata (oscA)
+          } else {
+            playOscillatorB(); // Suono sinusoidale (oscB)
+          }
         }
 
 		fill(0);
-  		text('tap to play', 20, 20);
+  		text('Suona con il dito indice', 20, 20);
   		text('freq: ' + freq, 20, 40);
   		text('amp: ' + amp, 20, 60);
 
@@ -88,21 +122,37 @@ async function draw() {
   }
 }
 
-function playOscillator() {
-  osc.start();
-  playing = true;
+function playOscillatorA() {
+  oscA.start();
+  playingA = true;
+}
+
+function playOscillatorB() {
+  oscB.start();
+  playingB = true;
 }
 
 function mouseMoved() {
-  if (!playing) {
-    playOscillator();
+  if (!playingA && isSquareSound === true) {
+    playOscillatorA();
+  }
+
+  if (!playingB && isSquareSound === false) {
+    playOscillatorB();
   }
 }
 
-function mouseReleased() {
-  osc.amp(0, 0.5);
-  playing = false;
-}
+
+
+
+  function mouseReleased() {
+    oscA.amp(0, 0.5);
+    oscB.amp(0, 0.5);
+    playingA = false;
+    playingB = false;
+  }
+  
+
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
