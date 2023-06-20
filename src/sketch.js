@@ -64,11 +64,11 @@ async function draw() {
           isSquareSound = true; // Indice associato ai quadrati (suono a onda quadrata)
         }
 
-        freqA = map(indiceA.x, 0, windowWidth, 100, 600); // Mappa la coordinata X dell'indice A sulla frequenza
-        ampA = map(indiceA.y, windowHeight  / 2, 0, 0, 1); // Mappa la coordinata Y dell'indice A sull'ampiezza
+        freqA = map(indiceA.x, 0, windowWidth / 2, 100, 600); // Mappa la coordinata X dell'indice A sulla frequenza
+        ampA = map(indiceA.y, windowHeight  / 2.15, 0, 0, 1); // Mappa la coordinata Y dell'indice A sull'ampiezza
 
-        freqB = map(indiceB.x, 0, windowWidth, 100, 800); // Mappa la coordinata X dell'indice B sulla frequenza
-        ampB = map(indiceB.y, windowHeight  / 2, 0, 0, 1); // Mappa la coordinata Y dell'indice B sull'ampiezza
+        freqB = map(indiceB.x, 0, windowWidth / 2, 100, 800); // Mappa la coordinata X dell'indice B sulla frequenza
+        ampB = map(indiceB.y, windowHeight  / 2.15, 0, 0, 1); // Mappa la coordinata Y dell'indice B sull'ampiezza
 
         // Imposta il colore di riempimento con la sfumatura di blu
         let hue = map(indiceA.x, 0, width, 180, 255); // Sfumature di blu da 180 a 255
