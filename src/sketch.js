@@ -36,7 +36,7 @@ async function draw() {
     fill(0);
     noStroke()
     textSize(13)
-      text('Suona con le dita indice', 20, 20);
+      text('Plays with index fingers', 20, 20);
       text('Osc. Sine ', 20, 40);
       text('Osc. Square', 20, 60);
       textSize(20)
@@ -79,7 +79,7 @@ async function draw() {
           isSquareSound = true; // Indice associato ai quadrati (suono a onda quadrata)
         }
 
-        freqA = map(indiceA.x, 0, windowWidth / 2, 100, 600); // Mappa la coordinata X dell'indice A sulla frequenza
+        freqA = map(indiceA.x, 0, windowWidth / 2, 100, 800); // Mappa la coordinata X dell'indice A sulla frequenza
         ampA = map(indiceA.y, windowHeight  / 2.15, 0, 0, 1); // Mappa la coordinata Y dell'indice A sull'ampiezza
 
         freqB = map(indiceB.x, 0, windowWidth / 2, 100, 800); // Mappa la coordinata X dell'indice B sulla frequenza
