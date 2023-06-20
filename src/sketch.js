@@ -32,10 +32,24 @@ async function setup() {
 async function draw() {
   if (detector && capture.loadedmetadata) {
     const hands = await detector.estimateHands(capture.elt, { flipHorizontal: true });
+    
+    fill(0);
+    noStroke()
+    textSize(13)
+      text('Suona con le dita indice', 20, 20);
+      text('Osc. Sine ', 20, 40);
+      text('Osc. Square', 20, 60);
+      textSize(20)
+      text('+', 1750, 20);
+      text('-', 1755, 1000);
+      stroke(0)
+      line(1757, 40, 1757, 970);
+
 
     for (let j = 0; j < hands.length; j++) {
       const hand = hands[j];
       const handedness = hand.handedness;
+
 
       if (playingA) {
         oscA.freq(freqA, 0.1);
@@ -115,11 +129,7 @@ async function draw() {
           }
         }
 
-		fill(0);
-    noStroke()
-  		text('Suona con il dito indice', 20, 20);
-  		text('Osc. Sine ', 20, 40);
-  		text('Osc. Square', 20, 60);
+
 
   		if (playing) {
    		osc.freq(freq, 0.1);
