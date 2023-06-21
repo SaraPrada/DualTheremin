@@ -18,3 +18,5 @@ Come riferimenti progettuali sono stati presi in considerazione due interfacce c
 [Femurdesign](https://femurdesign.com/theremin) <br>
 [Theremix](https://theremin.app/) 
 
+Un'altro importante spunto del progetto è John Cage, un grande esponente della musica che ha sperimentato molto sia per quanto riguarda il suono che per la grafica e la composizione degli spartiti.     
+
