@@ -79,10 +79,10 @@ Da qui il progetto ha preso la direzione di cercare quale potesse essere un'inte
         let brightness = 100; // Luminosità massima
         let offset = 40;
 
-        fill(hue, saturation, brightness);
-        stroke(hue + 5, saturation + 5 , brightness + 5);
 
 //cerchio
+        fill(hue, saturation, brightness);
+        stroke(hue + 5, saturation + 5 , brightness + 5);
         for (let i = 0; i < numCircles; i++) {
             i++;
           ellipse(myXA + (offset * i), myYA + (offset * i), diameter);

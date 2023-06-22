@@ -85,10 +85,10 @@ async function draw() {
         freqB = map(indiceB.x, 0, windowWidth / 2, 100, 800); // Mappa la coordinata X dell'indice B sulla frequenza
         ampB = map(indiceB.y, windowHeight  / 2.15, 0, 0, 1); // Mappa la coordinata Y dell'indice B sull'ampiezza
 
-        // Imposta il colore di riempimento con la sfumatura di blu
-        let hue = map(indiceA.x, 0, windowWidth / 1.2, 215, 155); // Sfumature di blu da 180 a 255
+        
+        let hue = map(indiceA.x, 0, windowWidth / 1.2, 215, 155); // Sfumature di blu 
         let saturation = map(indiceA.y, 0, windowHeight / 1.2, 100, 0); // Graduazione della saturazione
-        let hueB = map(indiceB.x, 0, windowWidth / 1.2, 20, 95); // Sfumature di blu da 180 a 255
+        let hueB = map(indiceB.x, 0, windowWidth / 1.2, 20, 95); // Sfumature di arancione
         let saturationB = map(indiceB.y, 0, windowHeight / 1.2, 100, 0); // Graduazione della saturazione
         let brightness = 100; // Luminosità massima
         let offset = 40;
