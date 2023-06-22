@@ -20,7 +20,7 @@ Come riferimenti progettuali sono stati presi in considerazione due interfacce c
 Un'altro importante spunto del progetto è John Cage, un grande esponente della musica che ha sperimentato molto sia per quanto riguarda il suono che per la grafica e la composizione degli spartiti.
 
 ## Design dell’interfaccia e dell’interazione
-Il design dell'interfaccia è pensato per dar spazio ed importanza all'esperienza visiva caratterizzata da 2 forme geometriche pure, il cerchio e il quadrato, entrambe duplicate 5 volte per ricordare il pentagramma di uno spartito, che si ricreano sul canvas in loop. La particolarità del progetto è che diversamente dall'interazione usuale del Theremin dove si utilizzano due mani distinte per controllare il pitch e il volume, qui, attraverso l'utilizzo del dito indice si controllano entrambi i valori sfruttando l'asse delle "X" e delle "Y". Il colore è stato studiato in base all'interazione dell'interfaccia e al suono. I due oscillatori, Sine e Square, hanno due colori diversi, Sine il blu in quanto soggettivamente ha un suono più freddo e delicato, mentre al contrario, Square l'arancione in quanto ha un suono più pungente e caldo. L'asse delle "X" controlla il parametro delle note, e qui si trovano tinte dei due colori dove partendo da sinistra si trovano tinte più scure per collegarlo al suono più grave, mentre a destra ci sono tinte più chiare e brillanti per collegarle al suono più acuto. L'asse delle "Y" invece controlla il parametro dell'amplificazione quindi del volume delle note, al colore di partenza dell'asse delle "X" viene tolto gradualmente il valore della saturazione per collegarlo all'abbassamento regolare del volume.
+Il design dell'interfaccia è pensato per dar spazio ed importanza all'esperienza visiva caratterizzata da 2 forme geometriche pure, il cerchio e il quadrato, entrambe duplicate 5 volte per ricordare il pentagramma di uno spartito, che si ricreano sul canvas in loop. La particolarità del progetto è che diversamente dall'interazione usuale del Theremin dove si utilizzano due mani distinte per controllare il pitch e il volume, qui, attraverso l'utilizzo dei due diti indici si controllano entrambi i valori sfruttando l'asse delle "X" e delle "Y". Il colore è stato studiato in base all'interazione dell'interfaccia e al suono. I due oscillatori, "Sine" e "Square", hanno due colori diversi, "Sine" il blu in quanto soggettivamente ha un suono più freddo e delicato, mentre al contrario, "Square" l'arancione in quanto ha un suono più pungente e caldo. L'asse delle "X" controlla il parametro delle note, e qui si trovano tinte dei due colori dove partendo da sinistra si trovano tinte più scure per collegarlo al suono più grave, mentre a destra ci sono tinte più chiare e brillanti per collegarle al suono più acuto. L'asse delle "Y" invece controlla il parametro dell'amplificazione quindi del volume delle note, al colore di partenza dell'asse delle "X" viene tolto gradualmente il valore della saturazione per collegarlo all'abbassamento regolare del volume.
 
 ## Tecnologia usata
 Come punto di partenza il progetto è partito proprio dal suono, acquisito dalla libreria di sound di p5.js.
@@ -67,29 +67,35 @@ function mouseReleased() {
 }
 
 ```
-Un’altra caratteristica è la funzione
-random che è stata impiegata per le bolle: cambiano la loro posizione ogni volta che la pagina viene ricaricata.
+Da qui il progetto ha preso la direzione di cercare quale potesse essere un'interazione nuova che potesse rendere migliore ed ancora più unica l'esperienza del Theremin: oltre alla rappresentazione visiva, la possibilità di poter suonare con due oscillatori differenti contemporaneamente è la parte centrale del codice.
 
 ```JavaScript
-    for(let x = 0; x<= n_bolle; x++) {
-		posx = random(width)
-		posy = random(height)
 
-		bolle.push(posx,posy)
-		console.log(posx,posy)
+//codice per la parte visiva e grafica
+        let hue = map(indiceA.x, 0, windowWidth / 1.2, 215, 155); // Sfumature di blu 
+        let saturation = map(indiceA.y, 0, windowHeight / 1.2, 100, 0); // Graduazione della saturazione
+        let hueB = map(indiceB.x, 0, windowWidth / 1.2, 20, 95); // Sfumature di arancione
+        let saturationB = map(indiceB.y, 0, windowHeight / 1.2, 100, 0); // Graduazione della saturazione
+        let brightness = 100; // Luminosità massima
+        let offset = 40;
 
-	}
-	console.log(bolle)
+        fill(hue, saturation, brightness);
+        stroke(hue + 5, saturation + 5 , brightness + 5);
 
+//cerchio
+        for (let i = 0; i < numCircles; i++) {
+            i++;
+          ellipse(myXA + (offset * i), myYA + (offset * i), diameter);
+        }
 
-	for(let x = 0; x<= bolle.length; x++) {
-		movex = bolle[x] 
-		movey = bolle[x + 1] 
-		fill (187, 241, 255)
-		ellipse (movex, bolle[x + 1], 20, 20)
-		fill (255)
-		ellipse(movex + 5, bolle[x + 1] + 5, 5, 5)
-	}
+//quadrato
+        fill(hueB, saturationB, brightness);
+        stroke(hueB + 5, saturationB + 5 , brightness + 5);
+        for (let i = 0; i < numCircles; i++) {
+          i++;
+          rect(myXB + (offset * i), myYB + (offset * i), diameter);
+        }
+
 ```
 
 
