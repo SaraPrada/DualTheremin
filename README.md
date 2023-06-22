@@ -187,11 +187,11 @@ Un ipotetico target del progetto sono musicisti, appassionati, curiosi che vogli
 
 ## Immagini e video
 
-[<img src="src/immagini-video/immagine1.jpg" width="300" alt="Foto del progetto 1">]()
+[<img src="src/immagini-video/immagine1.jpeg" width="300" alt="Foto del progetto 1">]()
 
-[<img src="src/immagini-video/immagine2.jpg" width="300" alt="Foto del progetto 2">]()
+[<img src="src/immagini-video/immagine2.jpeg" width="300" alt="Foto del progetto 2">]()
 
-[<img src="src/immagini-video/immagine3.jpg" width="300" alt="Foto del progetto 3">]()
+[<img src="src/immagini-video/immagine3.jpeg" width="300" alt="Foto del progetto 3">]()
 
 
 
