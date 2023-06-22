@@ -180,8 +180,10 @@ Da qui il progetto ha preso la direzione di cercare quale potesse essere un'inte
         playingB = false;
     }
 
-
 ```
+## Target e contesto d'uso
+
+Un ipotetico target del progetto sono musicisti, appassionati, curiosi che voglio provare ad affacciarsi al mondo del Theremin. Come contesto d'uso il progetto potrebbe essere utile per un concerto in quanto offre una esperienza visiva che può coinvolgere molto il pubblico. Dato la facilità nel poter suonare lo strumento in maniera virtuale può anche essere sperimentato in centri disabili per affinare il concetto di movimento e per far divertire in una maniera diversa le persone più fragili. 
 
 
 
