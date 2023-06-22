@@ -195,6 +195,14 @@ Un ipotetico target del progetto sono musicisti, appassionati, curiosi che vogli
 
 
 
+https://github.com/SaraPrada/DualTheremin/assets/126773878/8d8ea032-9a02-46dc-a8c7-adef7a88bf38
+
+
+
+https://github.com/SaraPrada/DualTheremin/assets/126773878/38eb359f-aabf-447c-be2e-7e1bd376f6be
+
+
+
 
 
 
