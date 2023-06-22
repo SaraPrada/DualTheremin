@@ -97,6 +97,91 @@ Da qui il progetto ha preso la direzione di cercare quale potesse essere un'inte
         }
 
 ```
+```JavaScript
+
+//codice per l'assegnazione degli oscillatori
+    let oscA, oscB; // Dichiarazione degli oscillatori
+    let playingA = false, playingB = false; // Indicatori per il suono di oscA e oscB
+    let freqA, ampA, freqB, ampB; // Frequenza e ampiezza per oscA e oscB
+
+    async function setup() {
+        oscA = new p5.Oscillator('sine');
+        oscB = new p5.Oscillator('square');
+        oscA.setType('sine');
+        oscB.setType('square');
+
+    async function draw() {
+        if (playingA) {
+        oscA.freq(freqA, 0.1);
+        oscA.amp(ampA, 0.1);
+        } else {
+        oscA.amp(0, 0.1);
+        }
+      
+        if (playingB) {
+        oscB.freq(freqB, 0.1);
+        oscB.amp(ampB, 0.1);
+        } else {
+        oscB.amp(0, 0.1);
+        }
+
+        if (handedness === "left") {
+          isSquareSound = false; // Indice associato ai cerchi (suono sinusoidale)
+        } else if (handedness === "right") {
+          isSquareSound = true; // Indice associato ai quadrati (suono a onda quadrata)
+        }
+
+        for (let i = 0; i < numCircles; i++) {
+          i++;
+          ellipse(myXA + (offset * i), myYA + (offset * i), diameter);
+          if (isSquareSound) {
+            playOscillatorB(); // Suono a onda quadrata (oscB)
+          } else {
+            playOscillatorA(); // Suono sinusoidale (oscA)
+          }
+        }
+
+        fill(hueB, saturationB, brightness);
+        stroke(hueB + 5, saturationB + 5 , brightness + 5);
+        for (let i = 0; i < numCircles; i++) {
+          i++;
+          rect(myXB + (offset * i), myYB + (offset * i), diameter);
+          if (isSquareSound) {
+            playOscillatorA(); // Suono a onda quadrata (oscA)
+          } else {
+            playOscillatorB(); // Suono sinusoidale (oscB)
+          }
+        }
+
+        if (playing) {
+   		osc.freq(freq, 0.1);
+    		osc.amp(amp, 0.1);
+  		}
+    }
+
+    function playOscillatorA() {
+        if (!playingA) {
+        oscA.start();
+        playingA = true;
+        }
+    }
+
+    function playOscillatorB() {
+        if (!playingB) {
+        oscB.start();
+        playingB = true;
+        }
+    }
+
+    function mouseReleased() {
+        oscA.amp(0, 0.5);
+        oscB.amp(0, 0.5);
+        playingA = false;
+        playingB = false;
+    }
+
+
+```
 
 
 
